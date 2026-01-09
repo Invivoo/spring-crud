@@ -11,7 +11,7 @@
     <groupId>com.hasan</groupId>
     <artifactId>spring-postgres-crud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>spring-postgres-crud</name>
     <description>spring-postgres-crud</description>
     <url/>

@@ -2,7 +2,7 @@ spring:
   application:
     name: spring-postgres-crud
   datasource:
-    url: jdbc:postgresql://localhost:5432/spring-postgres-crud
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres
   jpa:
