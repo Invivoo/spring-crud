@@ -1,10 +1,15 @@
 spring:
   application:
-    name: spring-postgres-crud
+    name: spring-crud
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: postgres
+    ##url: jdbc:postgresql://postgres:5432/postgres
+    url: jdbc:mysql://localhost:3306/testdb?useSSL=false
+    username: root
+    password: root
+
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
