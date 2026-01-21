@@ -1,11 +1,12 @@
+server:
+  port: 8081
 spring:
   application:
     name: spring-crud
   datasource:
-    ##url: jdbc:postgresql://postgres:5432/postgres
-    url: jdbc:mysql://localhost:3306/testdb?useSSL=false
-    username: root
-    password: root
+      url: jdbc:mysql://${DB_HOST}/${DB_NAME}?useSSL=false
+      username: ${DB_USERNAME}
+      password: ${DB_PASSWORD}
 
   jpa:
     hibernate:

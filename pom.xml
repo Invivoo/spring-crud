@@ -12,7 +12,7 @@
     <artifactId>spring-postgres-crud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>spring-postgres-crud</name>
+    <name>spring-crud</name>
     <description>spring-postgres-crud</description>
     <url/>
     <licenses>

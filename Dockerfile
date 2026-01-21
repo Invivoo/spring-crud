@@ -1,41 +1,32 @@
+# 1 ére methode
 FROM maven:3-openjdk-17-slim as build
 
-RUN mkdir -p /workspace
+RUN mkdir -p /app
 
-WORKDIR /workspace
+WORKDIR /app
 
-COPY pom.xml /workspace
+COPY pom.xml /app
 
-COPY src /workspace/src
+COPY src /app/src
 
 RUN mvn -f pom.xml clean package
 
 
-
 FROM alpine/java:17-jdk
 
-COPY --from=build /workspace/target/*.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8081
 
 ENTRYPOINT [ "java", "-jar", "/app.jar" ]
 
-
-# Step 1: Use an official OpenJDK base image from Docker Hub
+# 2 eme methode
 #FROM alpine/java:17-jdk
 
-# Step 2: Set the working directory inside the container
 #WORKDIR /app
 
-# Step 3: Copy the Spring Boot JAR file into the container
-#COPY target/spring-postgres-crud-0.0.1-SNAPSHOT.jar /app/spring-postgres-crud-0.0.1-SNAPSHOT.jar
-#COPY src/main/resources/application.yml /config/application.yml
+#ADD target/spring-crud-0.0.1-SNAPSHOT.jar /app/app.jar
 
-#ENV SPRING_CONFIG_LOCATION=classpath:/,file:/config/
-# Step 4: Expose the port your application runs on
 #EXPOSE 8081
 
-# Step 5: Define the command to run your Spring Boot application
-# CMD ["java", "-jar", "/app/spring-postgres-crud-0.0.1-SNAPSHOT.jar", "--spring.config.location=/config/application.yml"]
-
-#ENTRYPOINT ["java","-jar","/app/spring-postgres-crud-0.0.1-SNAPSHOT.jar"]
+#ENTRYPOINT ["java", "-jar", "app.jar"]
