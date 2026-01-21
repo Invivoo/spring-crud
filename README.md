@@ -45,9 +45,9 @@ spring:
   application:
     name: spring-crud
   datasource:
-    url: jdbc:postgresql://localhost:3306/testdb?useSSL=false
-    username: root
-    password: root
+      url: jdbc:mysql://${DB_HOST}/${DB_NAME}?useSSL=false
+      username: ${DB_USERNAME}
+      password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -58,13 +58,13 @@ spring:
 ### Step 3: Build and Run the Application
 ```bash
 mvn clean install
-mvn spring-boot:run
+mvn spring-boot:run (add .env variables for local test )
 ```
 ```csharp
 
 ### Using docker + kuberenets
 - install docker : https://docs.docker.com/engine/install/
-- instamm minikube : https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download
+- install minikube : https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download
 ```
 ### build spring-crud image
 - docker build . -f Dockerfile -t repo(docker-hub)/spring-crud:{version}
