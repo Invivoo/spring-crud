@@ -82,7 +82,7 @@ mvn spring-boot:run (add .env variables for local test )
 ```
 ```
  - minikube dashboard 
- - minikube service name --url 
+ - minikube service <name> --url 
 ```
 ### redeploy spring-crud updated version
 ```
