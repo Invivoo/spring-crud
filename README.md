@@ -91,3 +91,29 @@ relaunch docker build / + push the new version
 kubectl set image deployment/spring-crud-deployment spring-k8s-crud=(repo(docker-hub)/spring-crud:{new-version}
 kubectl rollout status deployment/spring-crud-deployment
 ```
+
+## Docker
+
+The `Dockerfile` is a multi-stage build (Maven build, then a slim JRE image running as a non-root user).
+The server listens on `$PORT` (default `8081`).
+
+```bash
+docker build -t spring-crud .
+docker run -p 8081:8081 -e DB_HOST=<host:port> -e DB_NAME=<db> -e DB_USERNAME=<user> -e DB_PASSWORD=<pwd> spring-crud
+```
+
+Database settings: `DB_VENDOR` (`mysql` by default, or `postgresql`), `DB_HOST`, `DB_NAME`, `DB_USERNAME`, `DB_PASSWORD`, and optional `DB_PARAMS` (default `?useSSL=false`).
+
+Local app + PostgreSQL with docker-compose (needs `POSTGRESDB_*` and `SPRING_*` variables in `.env`):
+
+```bash
+docker compose up --build
+```
+
+## Deploy on Render
+
+1. Push the repository to GitHub.
+2. In Render, choose **New > Blueprint** and select the repository; Render reads `render.yaml`.
+3. It creates a PostgreSQL database (`spring-crud-db`) and a Docker web service wired to it through `DB_*` variables. Render injects `PORT`, which the app uses.
+
+For a manual setup, create a Web Service with runtime **Docker** and set `DB_VENDOR=postgresql`, `DB_PARAMS=` (empty), `DB_HOST`, `DB_NAME`, `DB_USERNAME`, `DB_PASSWORD` from your Render PostgreSQL instance.

@@ -1,16 +1,13 @@
 server:
-  port: 8081
+  port: ${PORT:8081}
 spring:
   application:
     name: spring-crud
   datasource:
-      url: jdbc:mysql://${DB_HOST}/${DB_NAME}?useSSL=false
+      url: jdbc:${DB_VENDOR:mysql}://${DB_HOST}/${DB_NAME}${DB_PARAMS:?useSSL=false}
       username: ${DB_USERNAME}
       password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect

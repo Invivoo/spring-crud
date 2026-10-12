@@ -1,0 +1,31 @@
+databases:
+  - name: spring-crud-db
+    plan: free
+    databaseName: springcrud
+
+services:
+  - type: web
+    name: spring-crud
+    runtime: docker
+    plan: free
+    envVars:
+      - key: DB_VENDOR
+        value: postgresql
+      - key: DB_PARAMS
+        value: ""
+      - key: DB_HOST
+        fromDatabase:
+          name: spring-crud-db
+          property: host
+      - key: DB_NAME
+        fromDatabase:
+          name: spring-crud-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: spring-crud-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: spring-crud-db
+          property: password
